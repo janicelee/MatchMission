@@ -10,9 +10,11 @@ import UIKit
 
 class GameScreenViewController: UIViewController {
     
-    var cardManager = CardManager()
+    let cardManager = CardManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cardManager.performRequest()
     }
 }

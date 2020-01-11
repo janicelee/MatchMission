@@ -9,7 +9,11 @@
 import UIKit
 
 class Card {
+    var imageURL: URL
     var isFlipped = false
-    var image: UIImage?
-    var imageUrlString: String?
+    
+    init(_ imageURL: URL) {
+        self.imageURL = imageURL
+    }
+    
 }

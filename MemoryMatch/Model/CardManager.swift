@@ -17,7 +17,20 @@ class CardManager {
     let urlString = "https://shopicruit.myshopify.com/admin/products.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
     var cardArray = [Card]()
     var delegate: CardManagerDelegate?
-    var imageURLs = [String]()
+    var imageURLs = [URL]()
+    
+    
+    // TODO: throw error?
+    func generateCards() {
+        guard imageURLs.count >= 20 else { return }
+        imageURLs = imageURLs.shuffled()
+        
+        for i in 0..<20 {
+            cardArray.append(Card(imageURLs[i]))
+        }
+    }
+    
+    // MARK: - Networking Methods
     
     func performRequest() {
         if let url = URL(string: urlString) {
@@ -31,6 +44,7 @@ class CardManager {
                 
                 if let data = data {
                     self.parseJSON(data)
+                    self.generateCards()
                 }
             }
             task.resume()
@@ -45,8 +59,9 @@ class CardManager {
             let products = decodedData.products
             
             for product in products {
-                print(product.image.src)
-                imageURLs.append(product.image.src)
+                if let url = URL(string: product.image.src) {
+                    imageURLs.append(url)
+                }
             }
         } catch {
             self.delegate?.didFailWithError(error)
