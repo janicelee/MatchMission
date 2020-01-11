@@ -22,23 +22,25 @@ class CardManager {
     
     // TODO: throw error?
     func generateCards() {
-        guard imageURLs.count >= 20 else { return }
+        guard imageURLs.count >= 10 else { return }
         imageURLs = imageURLs.shuffled()
         
-        for i in 0..<20 {
+        for i in 0..<10 {
+            cardArray.append(Card(imageURLs[i]))
             cardArray.append(Card(imageURLs[i]))
         }
+        cardArray = cardArray.shuffled()
     }
     
     // MARK: - Networking Methods
     
-    func performRequest() {
+    func setUp() {
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             
             let task = session.dataTask(with: url) { (data, response, error) in
-                if let error = error {
-                    self.delegate?.didFailWithError(error)
+                if error != nil {
+                    self.delegate?.didFailWithError(error!)
                     return
                 }
                 

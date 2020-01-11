@@ -10,11 +10,39 @@ import UIKit
 
 class GameScreenViewController: UIViewController {
     
-    let cardManager = CardManager()
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    let cardManager = CardManager() // make the cardArray private?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cardManager.performRequest()
+        cardManager.setUp()
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
+}
+
+// MARK: - UICollectionViewDataSource Methods
+
+extension GameScreenViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("Setting # Items in Section: \(cardManager.cardArray.count)")
+        return cardManager.cardArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("setting up cell: \(indexPath.row)")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
+        let card = cardManager.cardArray[indexPath.row]
+        cell.setFrontImage(card.imageURL)
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate Methods
+
+extension GameScreenViewController: UICollectionViewDelegate {
+    
 }

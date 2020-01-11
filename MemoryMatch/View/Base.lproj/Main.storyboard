@@ -98,6 +98,7 @@
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nuO-GB-oSo">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </imageView>
                                                     </subviews>
                                                     <constraints>
@@ -131,6 +132,9 @@
                         <viewLayoutGuide key="safeArea" id="bzt-Gs-fHD"/>
                     </view>
                     <navigationItem key="navigationItem" id="gu8-eb-qg6"/>
+                    <connections>
+                        <outlet property="collectionView" destination="6bt-LE-UYc" id="LZp-GP-N1E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UR-2E-nKo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
