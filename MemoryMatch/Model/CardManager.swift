@@ -6,7 +6,7 @@
 //  Copyright © 2020 Janice Lee. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol CardManagerDelegate {
     func didFailWithError(_ error: Error)
@@ -14,27 +14,13 @@ protocol CardManagerDelegate {
 
 class CardManager {
 
-    let urlString = "https://shopicruit.myshopify.com/admin/products.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
-    var cardArray = [Card]()
-    var delegate: CardManagerDelegate?
-    var imageURLs = [URL]()
-    
-    
-    // TODO: throw error?
-    func generateCards() {
-        guard imageURLs.count >= 10 else { return }
-        imageURLs = imageURLs.shuffled()
-        
-        for i in 0..<10 {
-            cardArray.append(Card(imageURLs[i]))
-            cardArray.append(Card(imageURLs[i]))
-        }
-        cardArray = cardArray.shuffled()
-    }
+    private let urlString = "https://shopicruit.myshopify.com/admin/products.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
+    public var cardArray = [Card]()
+    public var delegate: CardManagerDelegate?
     
     // MARK: - Networking Methods
     
-    func setUp() {
+    func setUp(_ onComplete: @escaping () -> ()) {
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             
@@ -45,17 +31,18 @@ class CardManager {
                 }
                 
                 if let data = data {
-                    self.parseJSON(data)
-                    self.generateCards()
+                    let imageURLs = self.getImageURLs(data)
+                    self.generateCards(with: imageURLs, onComplete)
                 }
             }
             task.resume()
         }
     }
     
-    func parseJSON(_ data: Data) {
+    private func getImageURLs(_ data: Data) -> [URL] {
         let decoder = JSONDecoder()
-        
+        var imageURLs = [URL]()
+
         do {
             let decodedData = try decoder.decode(ProductData.self, from: data)
             let products = decodedData.products
@@ -67,6 +54,39 @@ class CardManager {
             }
         } catch {
             self.delegate?.didFailWithError(error)
+        }
+        return imageURLs
+    }
+    
+    // TODO: throw error?
+    private func generateCards(with imageURLs: [URL], _ onComplete: @escaping () -> ()) {
+        guard imageURLs.count >= 10 else { return }
+        let shuffledImageURLs = imageURLs.shuffled()
+        let group = DispatchGroup()
+        
+        for i in 0..<10 {
+            // Do network call to get the image using shuffledImageURLs[i]
+            
+            group.enter()
+            URLSession.shared.dataTask(with: shuffledImageURLs[i]) { (data, response, error) in
+                if error != nil {
+                    // do something
+                }
+                
+                if let data = data {
+                    if let resultImage = UIImage(data: data) {
+                        // On success, create a Card with this image, append to cardArray
+                        self.cardArray.append(Card(resultImage))
+                        self.cardArray.append(Card(resultImage))
+                        group.leave()
+                    }
+                }
+            }.resume()
+        }
+        
+        group.notify(queue: .main) {
+            self.cardArray = self.cardArray.shuffled()
+            onComplete()
         }
     }
 }
