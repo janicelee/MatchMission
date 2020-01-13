@@ -34,17 +34,26 @@ class GameScreenViewController: UIViewController {
 
 extension GameScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //print("Setting # Items in Section: \(cardManager.cardArray.count)")
         return cardManager.cardArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("Calling cellForItemAt")
-        //print("setting up cell: \(indexPath.row)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
         let card = cardManager.cardArray[indexPath.row]
         cell.setFrontImage(card.image)
+        cell.backgroundColor = UIColor.yellow
         return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout Methods
+extension GameScreenViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //let numCardsPerRow = cardManager.cardArray.count / 5
+        print("setting size")
+        let width = (collectionView.frame.size.width - 50) / 4
+        let height = width
+        return CGSize(width: width, height: height)
     }
 }
 

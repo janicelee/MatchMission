@@ -14,6 +14,6 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     func setFrontImage(_ image: UIImage) {
         frontImageView.image = image
-        backImageView.alpha = 0 
+        backImageView.alpha = 0
     }
 }
