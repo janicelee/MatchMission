@@ -74,8 +74,8 @@ class CardManager {
                 if let data = data {
                     if let resultImage = UIImage(data: data) {
                         // On success, create a Card with this image, append to cardArray
-                        self.cardArray.append(Card(resultImage))
-                        self.cardArray.append(Card(resultImage))
+                        self.cardArray.append(Card(resultImage, shuffledImageURLs[i]))
+                        self.cardArray.append(Card(resultImage, shuffledImageURLs[i]))
                         group.leave()
                     }
                 }

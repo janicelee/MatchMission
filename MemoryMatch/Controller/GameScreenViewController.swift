@@ -13,7 +13,7 @@ class GameScreenViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     let cardManager = CardManager() // make the cardArray private?
-    var faceUpCardIndex1: Int?
+    var faceUpCardIndexA: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,9 +70,38 @@ extension GameScreenViewController: UICollectionViewDelegate {
         if let card = cell.card {
             if !card.isFaceUp && !card.isMatched {
                 card.isFaceUp = true
-                cell.flipFaceUp()
+                cell.flipUp()
+                
+                if faceUpCardIndexA == nil {
+                    faceUpCardIndexA = indexPath
+                } else {
+                    checkForMatch(indexPath)
+                }
             }
         }
+    }
+    
+    func checkForMatch(_ faceUpCardIndexB: IndexPath) {
+        let cellA = collectionView.cellForItem(at: faceUpCardIndexA!) as! CardCollectionViewCell
+        let cellB = collectionView.cellForItem(at: faceUpCardIndexB) as! CardCollectionViewCell
+        
+        let cardA = cardManager.cardArray[faceUpCardIndexA!.row]
+        let cardB = cardManager.cardArray[faceUpCardIndexB.row]
+        
+        if cardA.imageURL == cardB.imageURL {
+            cardA.isMatched = true
+            cardB.isMatched = true
+            
+            cellA.Hide()
+            cellB.Hide()
+        } else {
+            cardA.isFaceUp = false
+            cardB.isFaceUp = false
+            
+            cellA.flipDown()
+            cellB.flipDown()
+        }
+        faceUpCardIndexA = nil
     }
 }
 

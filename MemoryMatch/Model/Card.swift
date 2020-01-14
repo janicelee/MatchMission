@@ -14,7 +14,8 @@ class Card {
     var isFaceUp = false
     var isMatched = false
     
-    init(_ image: UIImage) {
+    init(_ image: UIImage, _ imageURL: URL) {
         self.image = image
+        self.imageURL = imageURL
     }
 }
