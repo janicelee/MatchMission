@@ -34,6 +34,8 @@ class CardCollectionViewCell: UICollectionViewCell {
         
         UIView.animate(withDuration: 0.2, delay: 0.5, options: .curveEaseOut, animations: {
             self.frontImageView.alpha = 0
+            self.layer.borderWidth = 0
+            self.backgroundColor = UIColor.clear
         }, completion: nil)
     }
     
