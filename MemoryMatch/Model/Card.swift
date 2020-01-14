@@ -11,7 +11,8 @@ import UIKit
 class Card {
     var image: UIImage
     var imageURL: URL?
-    var isFlipped = false
+    var isFaceUp = false
+    var isMatched = false
     
     init(_ image: UIImage) {
         self.image = image

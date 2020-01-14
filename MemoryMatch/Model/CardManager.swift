@@ -65,12 +65,10 @@ class CardManager {
         let group = DispatchGroup()
         
         for i in 0..<10 {
-            // Do network call to get the image using shuffledImageURLs[i]
-            
             group.enter()
             URLSession.shared.dataTask(with: shuffledImageURLs[i]) { (data, response, error) in
                 if error != nil {
-                    // do something
+                    // TODO
                 }
                 
                 if let data = data {
