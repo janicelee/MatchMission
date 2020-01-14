@@ -15,7 +15,7 @@ protocol CardManagerDelegate {
 class CardManager {
 
     private let urlString = "https://shopicruit.myshopify.com/admin/products.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
-    public var cardArray = [Card]()
+    public var cards = [Card]()
     public var delegate: CardManagerDelegate?
     
     // MARK: - Networking Methods
@@ -74,8 +74,8 @@ class CardManager {
                 if let data = data {
                     if let resultImage = UIImage(data: data) {
                         // On success, create a Card with this image, append to cardArray
-                        self.cardArray.append(Card(resultImage, shuffledImageURLs[i]))
-                        self.cardArray.append(Card(resultImage, shuffledImageURLs[i]))
+                        self.cards.append(Card(resultImage, shuffledImageURLs[i]))
+                        self.cards.append(Card(resultImage, shuffledImageURLs[i]))
                         group.leave()
                     }
                 }
@@ -83,8 +83,17 @@ class CardManager {
         }
         
         group.notify(queue: .main) {
-            self.cardArray = self.cardArray.shuffled()
+            self.cards = self.cards.shuffled()
             onComplete()
         }
+    }
+    
+    func allCardsMatched() -> Bool {
+        for card in cards {
+            if !card.isMatched {
+                return false
+            }
+        }
+        return true
     }
 }

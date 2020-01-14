@@ -34,12 +34,12 @@ class GameScreenViewController: UIViewController {
 
 extension GameScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cardManager.cardArray.count
+        return cardManager.cards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
-        let card = cardManager.cardArray[indexPath.row]
+        let card = cardManager.cards[indexPath.row]
         cell.setCard(card)
         cell.layer.borderColor = UIColor.red.cgColor
         cell.layer.borderWidth = 1
@@ -52,7 +52,7 @@ extension GameScreenViewController: UICollectionViewDataSource {
 
 extension GameScreenViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numCardsPerRow = CGFloat(cardManager.cardArray.count / 5)
+        let numCardsPerRow = CGFloat(cardManager.cards.count / 5)
         let emptySpacePerRow = CGFloat((numCardsPerRow - 1) * 10)
         let width = (collectionView.frame.size.width - emptySpacePerRow) / 4
         let height = width
@@ -85,8 +85,8 @@ extension GameScreenViewController: UICollectionViewDelegate {
         let cellA = collectionView.cellForItem(at: faceUpCardIndexA!) as! CardCollectionViewCell
         let cellB = collectionView.cellForItem(at: faceUpCardIndexB) as! CardCollectionViewCell
         
-        let cardA = cardManager.cardArray[faceUpCardIndexA!.row]
-        let cardB = cardManager.cardArray[faceUpCardIndexB.row]
+        let cardA = cardManager.cards[faceUpCardIndexA!.row]
+        let cardB = cardManager.cards[faceUpCardIndexB.row]
         
         if cardA.imageURL == cardB.imageURL {
             cardA.isMatched = true
@@ -94,6 +94,7 @@ extension GameScreenViewController: UICollectionViewDelegate {
             
             cellA.Hide()
             cellB.Hide()
+            gameShouldEnd()
         } else {
             cardA.isFaceUp = false
             cardB.isFaceUp = false
@@ -102,6 +103,24 @@ extension GameScreenViewController: UICollectionViewDelegate {
             cellB.flipDown()
         }
         faceUpCardIndexA = nil
+    }
+    
+    func gameShouldEnd() {
+        if cardManager.allCardsMatched() {
+            showAlert("Mission Complete", "You found all matching pairs!")
+        } else {
+            return
+        }
+    }
+    
+    func showAlert(_ title: String, _ message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Return to main menu", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(alertAction)
+        present(alert, animated: true, completion: nil)
+        
     }
 }
 
