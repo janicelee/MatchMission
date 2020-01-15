@@ -11,9 +11,11 @@ import UIKit
 class GameScreenViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var scoreLabel: UILabel!
     
     let cardManager = CardManager() // make the cardArray private?
     var faceUpCardIndexA: IndexPath?
+    var pairsFound = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +25,63 @@ class GameScreenViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         cardManager.delegate = self
+        
+        updateScoreLabel()
     }
     
     func reloadCollectionViewCells() {
         collectionView.reloadData()
+    }
+    
+    // MARK: - Game Logic
+    
+    func checkForMatch(_ faceUpCardIndexB: IndexPath) {
+        let cellA = collectionView.cellForItem(at: faceUpCardIndexA!) as! CardCollectionViewCell
+        let cellB = collectionView.cellForItem(at: faceUpCardIndexB) as! CardCollectionViewCell
+        
+        let cardA = cardManager.cards[faceUpCardIndexA!.row]
+        let cardB = cardManager.cards[faceUpCardIndexB.row]
+        
+        if cardA.imageURL == cardB.imageURL {
+            cardA.isMatched = true
+            cardB.isMatched = true
+            
+            pairsFound += 1
+            updateScoreLabel()
+            
+            cellA.Hide()
+            cellB.Hide()
+            gameShouldEnd()
+        } else {
+            cardA.isFaceUp = false
+            cardB.isFaceUp = false
+            
+            cellA.flipDown()
+            cellB.flipDown()
+        }
+        faceUpCardIndexA = nil
+    }
+    
+    func gameShouldEnd() {
+        if cardManager.allCardsMatched() {
+            showAlert("Mission Complete", "You found all matching pairs!")
+        } else {
+            return
+        }
+    }
+    
+    // MARK: - UI Updates
+    func updateScoreLabel() {
+        scoreLabel.text = "\(pairsFound) out of 10"
+    }
+    
+    func showAlert(_ title: String, _ message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Return to main menu", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(alertAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -80,48 +135,6 @@ extension GameScreenViewController: UICollectionViewDelegate {
             }
         }
     }
-    
-    func checkForMatch(_ faceUpCardIndexB: IndexPath) {
-        let cellA = collectionView.cellForItem(at: faceUpCardIndexA!) as! CardCollectionViewCell
-        let cellB = collectionView.cellForItem(at: faceUpCardIndexB) as! CardCollectionViewCell
-        
-        let cardA = cardManager.cards[faceUpCardIndexA!.row]
-        let cardB = cardManager.cards[faceUpCardIndexB.row]
-        
-        if cardA.imageURL == cardB.imageURL {
-            cardA.isMatched = true
-            cardB.isMatched = true
-            
-            cellA.Hide()
-            cellB.Hide()
-            gameShouldEnd()
-        } else {
-            cardA.isFaceUp = false
-            cardB.isFaceUp = false
-            
-            cellA.flipDown()
-            cellB.flipDown()
-        }
-        faceUpCardIndexA = nil
-    }
-    
-    func gameShouldEnd() {
-        if cardManager.allCardsMatched() {
-            showAlert("Mission Complete", "You found all matching pairs!")
-        } else {
-            return
-        }
-    }
-    
-    func showAlert(_ title: String, _ message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Return to main menu", style: .default) { (action) in
-            self.dismiss(animated: true, completion: nil)
-        }
-        alert.addAction(alertAction)
-        present(alert, animated: true, completion: nil)
-        
-    }
 }
 
 // MARK: - CardManagerDelegate
@@ -131,5 +144,6 @@ extension GameScreenViewController: CardManagerDelegate {
         //
     }
 }
+
 
 
