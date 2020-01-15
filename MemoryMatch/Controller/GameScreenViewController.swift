@@ -13,7 +13,7 @@ class GameScreenViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scoreLabel: UILabel!
     
-    let cardManager = CardManager() // make the cardArray private?
+    let cardManager = CardManager() 
     var faceUpCardIndexA: IndexPath?
     var pairsFound = 0
     
