@@ -64,7 +64,7 @@ class GameScreenViewController: UIViewController {
     
     func gameShouldEnd() {
         if cardManager.allCardsMatched() {
-            showAlert("Mission Complete", "You found all matching pairs!")
+            showAlert(title: "Mission Complete", message: "You found all matching pairs!", actionTitle: "Main Menu")
         } else {
             return
         }
@@ -75,14 +75,19 @@ class GameScreenViewController: UIViewController {
         scoreLabel.text = "\(pairsFound) out of 10"
     }
     
-    func showAlert(_ title: String, _ message: String) {
+    func showAlert(title: String, message: String, actionTitle: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Return to main menu", style: .default) { (action) in
+        let alertAction = UIAlertAction(title: actionTitle, style: .default) { (action) in
             self.dismiss(animated: true, completion: nil)
         }
         alert.addAction(alertAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        showAlert(title: "Return to Main Menu?", message: "You will lose your progress", actionTitle: "Main Menu")
+    }
+    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -96,7 +101,7 @@ extension GameScreenViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
         let card = cardManager.cards[indexPath.row]
         cell.setCard(card)
-        cell.layer.borderColor = UIColor.red.cgColor
+        cell.layer.borderColor = UIColor.gray.cgColor
         cell.layer.borderWidth = 1
         cell.backgroundColor = UIColor.white
         return cell
