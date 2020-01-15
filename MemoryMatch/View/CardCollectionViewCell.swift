@@ -16,7 +16,7 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     func setCard(_ card: Card) {
         self.card = card
-        frontImageView.image = card.image
+        frontImageView.image = card.getImage()
     }
     
     func flipUp() {

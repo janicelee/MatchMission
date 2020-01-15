@@ -39,12 +39,14 @@ class GameScreenViewController: UIViewController {
         let cellA = collectionView.cellForItem(at: faceUpCardIndexA!) as! CardCollectionViewCell
         let cellB = collectionView.cellForItem(at: faceUpCardIndexB) as! CardCollectionViewCell
         
-        let cardA = cardManager.cards[faceUpCardIndexA!.row]
-        let cardB = cardManager.cards[faceUpCardIndexB.row]
+        let cards = cardManager.getCards()
         
-        if cardA.imageURL == cardB.imageURL {
-            cardA.isMatched = true
-            cardB.isMatched = true
+        let cardA = cards[faceUpCardIndexA!.row]
+        let cardB = cards[faceUpCardIndexB.row]
+        
+        if cardA.getImageURL() == cardB.getImageURL() {
+            cardA.setIsMatched(to: true)
+            cardB.setIsMatched(to: true)
             
             pairsFound += 1
             updateScoreLabel()
@@ -53,8 +55,8 @@ class GameScreenViewController: UIViewController {
             cellB.Hide()
             gameShouldEnd()
         } else {
-            cardA.isFaceUp = false
-            cardB.isFaceUp = false
+            cardA.setIsFaceUp(to: false)
+            cardB.setIsFaceUp(to: false)
             
             cellA.flipDown()
             cellB.flipDown()
@@ -94,12 +96,12 @@ class GameScreenViewController: UIViewController {
 
 extension GameScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cardManager.cards.count
+        return cardManager.getCards().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
-        let card = cardManager.cards[indexPath.row]
+        let card = cardManager.getCards()[indexPath.row]
         cell.setCard(card)
         cell.layer.borderColor = UIColor.gray.cgColor
         cell.layer.borderWidth = 1
@@ -112,7 +114,7 @@ extension GameScreenViewController: UICollectionViewDataSource {
 
 extension GameScreenViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numCardsPerRow = CGFloat(cardManager.cards.count / 5)
+        let numCardsPerRow = CGFloat(cardManager.getCards().count / 5)
         let emptySpacePerRow = CGFloat((numCardsPerRow - 1) * 10)
         let width = (collectionView.frame.size.width - emptySpacePerRow) / 4
         let height = width
@@ -128,8 +130,8 @@ extension GameScreenViewController: UICollectionViewDelegate {
         
         // Retrieve card from either the cell or cardManager.cardArray[indexpath.row]
         if let card = cell.card {
-            if !card.isFaceUp && !card.isMatched {
-                card.isFaceUp = true
+            if !card.getIsFaceUp() && !card.getIsMatched() {
+                card.setIsFaceUp(to: true)
                 cell.flipUp()
                 
                 if faceUpCardIndexA == nil {

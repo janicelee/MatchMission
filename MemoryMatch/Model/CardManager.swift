@@ -15,8 +15,21 @@ protocol CardManagerDelegate {
 class CardManager {
 
     private let urlString = "https://shopicruit.myshopify.com/admin/products.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
-    public var cards = [Card]()
-    public var delegate: CardManagerDelegate?
+    private var cards = [Card]()
+    var delegate: CardManagerDelegate?
+    
+    func getCards() -> [Card] {
+        return cards
+    }
+    
+    func allCardsMatched() -> Bool {
+        for card in cards {
+            if !card.getIsMatched() {
+                return false
+            }
+        }
+        return true
+    }
     
     // MARK: - Networking Methods
     
@@ -86,14 +99,5 @@ class CardManager {
             self.cards = self.cards.shuffled()
             onComplete()
         }
-    }
-    
-    func allCardsMatched() -> Bool {
-        for card in cards {
-            if !card.isMatched {
-                return false
-            }
-        }
-        return true
     }
 }
