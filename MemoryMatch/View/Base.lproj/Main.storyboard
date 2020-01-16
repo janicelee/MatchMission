@@ -19,17 +19,17 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="xXG-KJ-Xju">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Match" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny2-0M-mdK">
-                                <rect key="frame" x="0.0" y="144" width="414" height="52"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match Mission" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny2-0M-mdK">
+                                <rect key="frame" x="0.0" y="174" width="414" height="56"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="43"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMx-dy-cLg">
                                 <rect key="frame" x="0.0" y="631" width="414" height="46"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
                                 <state key="normal" title="Play">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="playButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iae-Fl-LUI"/>
@@ -48,7 +48,7 @@
                             <constraint firstItem="eMx-dy-cLg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OKn-av-eB2"/>
                             <constraint firstItem="ny2-0M-mdK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="QXj-IV-gP8"/>
                             <constraint firstAttribute="bottom" secondItem="xXG-KJ-Xju" secondAttribute="bottom" id="hBd-IG-JZ2"/>
-                            <constraint firstItem="ny2-0M-mdK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="m3Z-xs-S6b"/>
+                            <constraint firstItem="ny2-0M-mdK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="130" id="m3Z-xs-S6b"/>
                             <constraint firstAttribute="trailing" secondItem="xXG-KJ-Xju" secondAttribute="trailing" id="x1s-w3-RCV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -79,9 +79,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="138" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngY-Jh-9ig">
-                                                        <rect key="frame" x="15" y="25" width="108" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <rect key="frame" x="15" y="24" width="108" height="22.333333333333329"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -95,9 +95,9 @@
                                                 <rect key="frame" x="138" y="0.0" width="138" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 out of 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ju-YY-pqq">
-                                                        <rect key="frame" x="28" y="25" width="82" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <rect key="frame" x="26.33333333333335" y="24" width="85.666666666666686" height="22.333333333333329"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -110,7 +110,9 @@
                                                 <rect key="frame" x="276" y="0.0" width="138" height="70"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJ3-hI-wAe">
-                                                        <rect key="frame" x="105.66666666666669" y="24" width="17.333333333333329" height="22"/>
+                                                        <rect key="frame" x="105.66666666666669" y="23.666666666666671" width="17.333333333333329" height="23"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" image="xmark" catalog="system"/>
                                                         <connections>
                                                             <action selector="backButtonPressed:" destination="O3N-lJ-qVu" eventType="touchUpInside" id="NKN-4X-A3l"/>
@@ -208,7 +210,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="744" height="467"/>
+        <image name="background" width="744" height="471"/>
         <image name="xmark" catalog="system" width="64" height="56"/>
     </resources>
 </document>

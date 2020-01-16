@@ -135,9 +135,8 @@ extension GameScreenViewController: UICollectionViewDelegate {
 extension GameScreenViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let emptySpacePerRow = CGFloat((numCardsPerRow - 1) * 10)
-        let cellWidth = (collectionView.frame.size.width - emptySpacePerRow) / CGFloat(numCardsPerRow)
-        let cellHeight = cellWidth
-        return CGSize(width: cellWidth, height: cellHeight)
+        let cellSize = ((collectionView.frame.size.width - emptySpacePerRow) / CGFloat(numCardsPerRow)).rounded(.down)
+        return CGSize(width: cellSize, height: cellSize)
     }
 }
 
