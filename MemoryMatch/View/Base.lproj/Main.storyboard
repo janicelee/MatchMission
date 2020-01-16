@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="xXG-KJ-Xju">
-                                <rect key="frame" x="0.0" y="0.0" width="414.00000000000045" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="e61-4c-mtS">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
@@ -95,8 +95,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="lbV-Ex-diN">
-                                <rect key="frame" x="0.0" y="0.0" width="414.00000000000045" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                             </imageView>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mt-Jd-k9j">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zMS-4c-dg6">
+                                        <rect key="frame" x="188.66666666666666" y="402.66666666666669" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.29551048801369856" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="zMS-4c-dg6" firstAttribute="centerY" secondItem="3Mt-Jd-k9j" secondAttribute="centerY" id="4NS-uw-Hq5"/>
+                                    <constraint firstItem="zMS-4c-dg6" firstAttribute="centerX" secondItem="3Mt-Jd-k9j" secondAttribute="centerX" id="gys-1w-a5n"/>
+                                </constraints>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="wKn-Ks-Kfw">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
@@ -179,10 +192,10 @@
                                                             <subviews>
                                                                 <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="JiG-TU-baU">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                    <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.65146083047945202" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.5040667808219178" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </imageView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" image="backimage" translatesAutoresizingMaskIntoConstraints="NO" id="nuO-GB-oSo">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="50.000000000000455" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
@@ -215,19 +228,24 @@
                             </stackView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="lbV-Ex-diN" firstAttribute="leading" secondItem="1X6-qp-f1H" secondAttribute="leading" id="2La-jz-iCn"/>
+                            <constraint firstAttribute="trailing" secondItem="3Mt-Jd-k9j" secondAttribute="trailing" id="6QV-I0-LlY"/>
                             <constraint firstItem="wKn-Ks-Kfw" firstAttribute="leading" secondItem="bzt-Gs-fHD" secondAttribute="leading" id="9rH-rP-9oV"/>
+                            <constraint firstAttribute="bottom" secondItem="3Mt-Jd-k9j" secondAttribute="bottom" id="Eoc-tr-ZqJ"/>
+                            <constraint firstItem="3Mt-Jd-k9j" firstAttribute="top" secondItem="1X6-qp-f1H" secondAttribute="top" id="Hnw-Ry-fRm"/>
                             <constraint firstItem="wKn-Ks-Kfw" firstAttribute="top" secondItem="bzt-Gs-fHD" secondAttribute="top" id="KtU-xe-Dgn"/>
-                            <constraint firstItem="bzt-Gs-fHD" firstAttribute="trailing" secondItem="lbV-Ex-diN" secondAttribute="trailing" id="Odp-tf-W3m"/>
-                            <constraint firstItem="lbV-Ex-diN" firstAttribute="leading" secondItem="bzt-Gs-fHD" secondAttribute="leading" id="YwN-KN-dVH"/>
+                            <constraint firstAttribute="bottom" secondItem="lbV-Ex-diN" secondAttribute="bottom" id="RLv-vD-Dul"/>
+                            <constraint firstAttribute="trailing" secondItem="lbV-Ex-diN" secondAttribute="trailing" id="a3y-TZ-yYX"/>
                             <constraint firstItem="wKn-Ks-Kfw" firstAttribute="bottom" secondItem="bzt-Gs-fHD" secondAttribute="bottom" id="g46-eh-R0o"/>
                             <constraint firstItem="bzt-Gs-fHD" firstAttribute="trailing" secondItem="wKn-Ks-Kfw" secondAttribute="trailing" id="iZx-tp-qF4"/>
-                            <constraint firstItem="lbV-Ex-diN" firstAttribute="top" secondItem="bzt-Gs-fHD" secondAttribute="top" id="uo1-9z-tkg"/>
-                            <constraint firstItem="bzt-Gs-fHD" firstAttribute="bottom" secondItem="lbV-Ex-diN" secondAttribute="bottom" id="z8Z-xe-nPq"/>
+                            <constraint firstItem="lbV-Ex-diN" firstAttribute="top" secondItem="1X6-qp-f1H" secondAttribute="top" id="mD9-kr-yBl"/>
+                            <constraint firstItem="3Mt-Jd-k9j" firstAttribute="leading" secondItem="1X6-qp-f1H" secondAttribute="leading" id="sbg-Qh-wme"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bzt-Gs-fHD"/>
                     </view>
                     <navigationItem key="navigationItem" id="gu8-eb-qg6"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="3Mt-Jd-k9j" id="sN6-m4-PrM"/>
                         <outlet property="collectionView" destination="6bt-LE-UYc" id="LZp-GP-N1E"/>
                         <outlet property="scoreLabel" destination="7ju-YY-pqq" id="b4D-8Z-PDf"/>
                     </connections>

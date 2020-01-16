@@ -12,17 +12,19 @@ class GameScreenViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var activityIndicatorView: UIView!
     
-    let cardManager = CardManager() 
+    let cardManager = CardManager()
+    
     var faceUpCardIndexA: IndexPath?
     var numCardsPerRow = 4
     var pairsFound = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         cardManager.setUp(reloadCollectionViewCells)
-
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         cardManager.delegate = self
@@ -31,6 +33,10 @@ class GameScreenViewController: UIViewController {
     }
     
     func reloadCollectionViewCells() {
+        UIView.transition(with: activityIndicatorView, duration: 5, options: .transitionCrossDissolve, animations: {
+            self.activityIndicatorView.isHidden = true
+        }, completion: nil)
+        
         collectionView.reloadData()
     }
     
@@ -78,6 +84,10 @@ class GameScreenViewController: UIViewController {
         scoreLabel.text = "\(pairsFound) out of 10"
     }
     
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        showAlert(title: "Return to Main Menu?", message: "You will lose your progress", actionTitle: "Main Menu")
+    }
+    
     func showAlert(title: String, message: String, actionTitle: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: actionTitle, style: .default) { (action) in
@@ -86,11 +96,6 @@ class GameScreenViewController: UIViewController {
         alert.addAction(alertAction)
         present(alert, animated: true, completion: nil)
     }
-    
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        showAlert(title: "Return to Main Menu?", message: "You will lose your progress", actionTitle: "Main Menu")
-    }
-    
 }
 
 // MARK: - UICollectionViewDataSource

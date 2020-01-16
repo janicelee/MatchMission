@@ -24,7 +24,6 @@ class MainScreenViewController: UIViewController {
         
         if let superview = playButton.superview {
             let width = superview.frame.size.width * 0.6
-
             playButton.widthAnchor.constraint(equalToConstant: width).isActive = true
         }
     }
