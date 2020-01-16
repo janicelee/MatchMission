@@ -19,6 +19,12 @@ class CardCollectionViewCell: UICollectionViewCell {
         frontImageView.image = card.getImage()
     }
     
+    func setAppearence() {
+        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderWidth = 1
+        self.backgroundColor = UIColor.clear
+    }
+    
     func flipUp() {
         UIView.transition(from: backImageView, to: frontImageView, duration: 0.2, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
     }

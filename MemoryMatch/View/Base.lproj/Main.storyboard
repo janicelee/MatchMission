@@ -19,19 +19,17 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="xXG-KJ-Xju">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Memory Match" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny2-0M-mdK">
-                                <rect key="frame" x="66" y="149" width="283" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="44"/>
-                                <color key="textColor" red="0.95308858156204224" green="0.82478189468383789" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Match" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny2-0M-mdK">
+                                <rect key="frame" x="0.0" y="144" width="414" height="52"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMx-dy-cLg">
-                                <rect key="frame" x="96" y="520" width="222" height="77"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.95308858159999998" green="0.82478189469999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMx-dy-cLg">
+                                <rect key="frame" x="0.0" y="631" width="414" height="46"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
                                 <state key="normal" title="Play">
-                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="playButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iae-Fl-LUI"/>
@@ -42,8 +40,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="xXG-KJ-Xju" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="24j-5y-82J"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eMx-dy-cLg" secondAttribute="trailing" id="6Ew-Nn-Hm6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ny2-0M-mdK" secondAttribute="trailing" id="7Rc-Li-V6y"/>
+                            <constraint firstItem="ny2-0M-mdK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9sf-2v-0ho"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eMx-dy-cLg" secondAttribute="bottom" constant="185" id="FxM-8y-sIY"/>
                             <constraint firstItem="xXG-KJ-Xju" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ljz-Km-PvY"/>
+                            <constraint firstItem="eMx-dy-cLg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OKn-av-eB2"/>
+                            <constraint firstItem="ny2-0M-mdK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="QXj-IV-gP8"/>
                             <constraint firstAttribute="bottom" secondItem="xXG-KJ-Xju" secondAttribute="bottom" id="hBd-IG-JZ2"/>
+                            <constraint firstItem="ny2-0M-mdK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="m3Z-xs-S6b"/>
                             <constraint firstAttribute="trailing" secondItem="xXG-KJ-Xju" secondAttribute="trailing" id="x1s-w3-RCV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -203,7 +208,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="3000" height="2000"/>
+        <image name="background" width="744" height="467"/>
         <image name="xmark" catalog="system" width="64" height="56"/>
     </resources>
 </document>

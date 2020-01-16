@@ -15,6 +15,7 @@ class GameScreenViewController: UIViewController {
     
     let cardManager = CardManager() 
     var faceUpCardIndexA: IndexPath?
+    var numCardsPerRow = 4
     var pairsFound = 0
     
     override func viewDidLoad() {
@@ -103,22 +104,8 @@ extension GameScreenViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
         let card = cardManager.getCards()[indexPath.row]
         cell.setCard(card)
-        cell.layer.borderColor = UIColor.gray.cgColor
-        cell.layer.borderWidth = 1
-        cell.backgroundColor = UIColor.white
+        cell.setAppearence()
         return cell
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension GameScreenViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numCardsPerRow = CGFloat(cardManager.getCards().count / 5)
-        let emptySpacePerRow = CGFloat((numCardsPerRow - 1) * 10)
-        let width = (collectionView.frame.size.width - emptySpacePerRow) / 4
-        let height = width
-        return CGSize(width: width, height: height)
     }
 }
 
@@ -128,7 +115,6 @@ extension GameScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell
         
-        // Retrieve card from either the cell or cardManager.cardArray[indexpath.row]
         if let card = cell.card {
             if !card.getIsFaceUp() && !card.getIsMatched() {
                 card.setIsFaceUp(to: true)
@@ -141,6 +127,17 @@ extension GameScreenViewController: UICollectionViewDelegate {
                 }
             }
         }
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension GameScreenViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let emptySpacePerRow = CGFloat((numCardsPerRow - 1) * 10)
+        let cellWidth = (collectionView.frame.size.width - emptySpacePerRow) / CGFloat(numCardsPerRow)
+        let cellHeight = cellWidth
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }
 

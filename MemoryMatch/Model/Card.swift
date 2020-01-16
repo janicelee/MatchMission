@@ -10,7 +10,7 @@ import UIKit
 
 class Card {
     private var image: UIImage
-    private var imageURL: URL?
+    private var imageURL: URL
     private var isFaceUp = false
     private var isMatched = false
     
@@ -31,15 +31,15 @@ class Card {
         return isFaceUp
     }
     
-    func setIsFaceUp(to: Bool) {
-        self.isFaceUp = to
+    func setIsFaceUp(to value: Bool) {
+        self.isFaceUp = value
     }
     
     func getIsMatched() -> Bool {
         return isMatched
     }
     
-    func setIsMatched(to: Bool) {
-        self.isMatched = to
+    func setIsMatched(to value: Bool) {
+        self.isMatched = value
     }
 }

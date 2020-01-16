@@ -16,7 +16,9 @@ class CardManager {
 
     private let urlString = "https://shopicruit.myshopify.com/admin/products.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
     private var cards = [Card]()
+    
     var delegate: CardManagerDelegate?
+    var numPairs = 10
     
     func getCards() -> [Card] {
         return cards
@@ -30,8 +32,6 @@ class CardManager {
         }
         return true
     }
-    
-    // MARK: - Networking Methods
     
     func setUp(_ onComplete: @escaping () -> ()) {
         if let url = URL(string: urlString) {
@@ -73,20 +73,19 @@ class CardManager {
     
     // TODO: throw error?
     private func generateCards(with imageURLs: [URL], _ onComplete: @escaping () -> ()) {
-        guard imageURLs.count >= 10 else { return }
+        guard imageURLs.count >= numPairs else { return }
         let shuffledImageURLs = imageURLs.shuffled()
         let group = DispatchGroup()
         
-        for i in 0..<10 {
+        for i in 0..<numPairs {
             group.enter()
             URLSession.shared.dataTask(with: shuffledImageURLs[i]) { (data, response, error) in
                 if error != nil {
-                    // TODO
+                    self.delegate?.didFailWithError(error!)
                 }
                 
                 if let data = data {
                     if let resultImage = UIImage(data: data) {
-                        // On success, create a Card with this image, append to cardArray
                         self.cards.append(Card(resultImage, shuffledImageURLs[i]))
                         self.cards.append(Card(resultImage, shuffledImageURLs[i]))
                         group.leave()
@@ -96,6 +95,7 @@ class CardManager {
         }
         
         group.notify(queue: .main) {
+            print("group.notify")
             self.cards = self.cards.shuffled()
             onComplete()
         }
