@@ -19,10 +19,16 @@ class CardCollectionViewCell: UICollectionViewCell {
         frontImageView.image = card.getImage()
     }
     
-    func setAppearence() {
-        self.layer.borderColor = UIColor.white.cgColor
-        self.layer.borderWidth = 1
+    func setAppearance() {
         self.backgroundColor = UIColor.clear
+        
+        frontImageView.layer.borderColor = UIColor.white.cgColor
+        frontImageView.layer.borderWidth = 4
+        frontImageView.layer.cornerRadius = 4
+        
+        backImageView.layer.borderColor = UIColor.white.cgColor
+        backImageView.layer.borderWidth = 4
+        backImageView.layer.cornerRadius = 4
     }
     
     func flipUp() {

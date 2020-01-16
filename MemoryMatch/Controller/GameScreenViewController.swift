@@ -104,7 +104,7 @@ extension GameScreenViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
         let card = cardManager.getCards()[indexPath.row]
         cell.setCard(card)
-        cell.setAppearence()
+        cell.setAppearance()
         return cell
     }
 }

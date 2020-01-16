@@ -95,7 +95,6 @@ class CardManager {
         }
         
         group.notify(queue: .main) {
-            print("group.notify")
             self.cards = self.cards.shuffled()
             onComplete()
         }
