@@ -63,7 +63,7 @@
 		F7FB426423C847E4006714EB = {
 			isa = PBXGroup;
 			children = (
-				F7FB426F23C847E4006714EB /* MissionMatch */,
+				F7FB426F23C847E4006714EB /* MatchMission */,
 				F7FB426E23C847E4006714EB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,7 +76,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F7FB426F23C847E4006714EB /* MissionMatch */ = {
+		F7FB426F23C847E4006714EB /* MatchMission */ = {
 			isa = PBXGroup;
 			children = (
 				F7FB427023C847E4006714EB /* AppDelegate.swift */,
@@ -88,7 +88,7 @@
 				F7FB427B23C847E5006714EB /* LaunchScreen.storyboard */,
 				F7FB427E23C847E5006714EB /* Info.plist */,
 			);
-			path = MissionMatch;
+			path = MatchMission;
 			sourceTree = "<group>";
 		};
 		F7FB428423C84858006714EB /* Controller */ = {
@@ -144,7 +144,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F7FB426823C847E4006714EB /* Build configuration list for PBXProject "MissionMatch" */;
+			buildConfigurationList = F7FB426823C847E4006714EB /* Build configuration list for PBXProject "MatchMission" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -334,12 +334,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SA29F4NK83;
-				INFOPLIST_FILE = MissionMatch/Info.plist;
+				INFOPLIST_FILE = MatchMission/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jlee.MissionMatch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jlee.MatchMission;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -352,12 +352,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SA29F4NK83;
-				INFOPLIST_FILE = MissionMatch/Info.plist;
+				INFOPLIST_FILE = MatchMission/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jlee.MissionMatch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jlee.MatchMission;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -367,7 +367,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F7FB426823C847E4006714EB /* Build configuration list for PBXProject "MissionMatch" */ = {
+		F7FB426823C847E4006714EB /* Build configuration list for PBXProject "MatchMission" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F7FB427F23C847E5006714EB /* Debug */,
