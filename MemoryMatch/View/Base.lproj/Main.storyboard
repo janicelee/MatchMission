@@ -97,19 +97,11 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="lbV-Ex-diN">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                             </imageView>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mt-Jd-k9j">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                                <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zMS-4c-dg6">
-                                        <rect key="frame" x="188.66666666666666" y="402.66666666666669" width="37" height="37"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.29551048801369856" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="zMS-4c-dg6" firstAttribute="centerY" secondItem="3Mt-Jd-k9j" secondAttribute="centerY" id="4NS-uw-Hq5"/>
-                                    <constraint firstItem="zMS-4c-dg6" firstAttribute="centerX" secondItem="3Mt-Jd-k9j" secondAttribute="centerX" id="gys-1w-a5n"/>
-                                </constraints>
-                            </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zMS-4c-dg6">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.22153253424657535" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="wKn-Ks-Kfw">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
@@ -119,7 +111,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIV-gT-ojs">
                                                 <rect key="frame" x="0.0" y="0.0" width="138" height="70"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngY-Jh-9ig">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time: 0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngY-Jh-9ig">
                                                         <rect key="frame" x="15" y="24" width="108" height="22.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -229,25 +221,26 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="lbV-Ex-diN" firstAttribute="leading" secondItem="1X6-qp-f1H" secondAttribute="leading" id="2La-jz-iCn"/>
-                            <constraint firstAttribute="trailing" secondItem="3Mt-Jd-k9j" secondAttribute="trailing" id="6QV-I0-LlY"/>
                             <constraint firstItem="wKn-Ks-Kfw" firstAttribute="leading" secondItem="bzt-Gs-fHD" secondAttribute="leading" id="9rH-rP-9oV"/>
-                            <constraint firstAttribute="bottom" secondItem="3Mt-Jd-k9j" secondAttribute="bottom" id="Eoc-tr-ZqJ"/>
-                            <constraint firstItem="3Mt-Jd-k9j" firstAttribute="top" secondItem="1X6-qp-f1H" secondAttribute="top" id="Hnw-Ry-fRm"/>
                             <constraint firstItem="wKn-Ks-Kfw" firstAttribute="top" secondItem="bzt-Gs-fHD" secondAttribute="top" id="KtU-xe-Dgn"/>
                             <constraint firstAttribute="bottom" secondItem="lbV-Ex-diN" secondAttribute="bottom" id="RLv-vD-Dul"/>
+                            <constraint firstItem="bzt-Gs-fHD" firstAttribute="bottom" secondItem="zMS-4c-dg6" secondAttribute="bottom" id="XXE-0n-5yC"/>
+                            <constraint firstItem="bzt-Gs-fHD" firstAttribute="trailing" secondItem="zMS-4c-dg6" secondAttribute="trailing" id="a3u-iY-g4Q"/>
                             <constraint firstAttribute="trailing" secondItem="lbV-Ex-diN" secondAttribute="trailing" id="a3y-TZ-yYX"/>
                             <constraint firstItem="wKn-Ks-Kfw" firstAttribute="bottom" secondItem="bzt-Gs-fHD" secondAttribute="bottom" id="g46-eh-R0o"/>
+                            <constraint firstItem="zMS-4c-dg6" firstAttribute="top" secondItem="bzt-Gs-fHD" secondAttribute="top" id="gL8-Uw-ob8"/>
                             <constraint firstItem="bzt-Gs-fHD" firstAttribute="trailing" secondItem="wKn-Ks-Kfw" secondAttribute="trailing" id="iZx-tp-qF4"/>
+                            <constraint firstItem="zMS-4c-dg6" firstAttribute="leading" secondItem="bzt-Gs-fHD" secondAttribute="leading" id="kaC-nE-QaS"/>
                             <constraint firstItem="lbV-Ex-diN" firstAttribute="top" secondItem="1X6-qp-f1H" secondAttribute="top" id="mD9-kr-yBl"/>
-                            <constraint firstItem="3Mt-Jd-k9j" firstAttribute="leading" secondItem="1X6-qp-f1H" secondAttribute="leading" id="sbg-Qh-wme"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bzt-Gs-fHD"/>
                     </view>
                     <navigationItem key="navigationItem" id="gu8-eb-qg6"/>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="3Mt-Jd-k9j" id="sN6-m4-PrM"/>
+                        <outlet property="activityIndicator" destination="zMS-4c-dg6" id="ahn-RE-FqW"/>
                         <outlet property="collectionView" destination="6bt-LE-UYc" id="LZp-GP-N1E"/>
                         <outlet property="scoreLabel" destination="7ju-YY-pqq" id="b4D-8Z-PDf"/>
+                        <outlet property="timerLabel" destination="ngY-Jh-9ig" id="rhf-VE-CZC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UR-2E-nKo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

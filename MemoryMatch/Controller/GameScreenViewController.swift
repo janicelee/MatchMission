@@ -10,11 +10,13 @@ import UIKit
 
 class GameScreenViewController: UIViewController {
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var activityIndicatorView: UIView!
+    @IBOutlet weak var timerLabel: UILabel!
     
     let cardManager = CardManager()
+    let timerManager = TimerManager()
     
     var faceUpCardIndexA: IndexPath?
     var numCardsPerRow = 4
@@ -22,7 +24,12 @@ class GameScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        
+        timerManager.delegate = self
+        timerManager.startTimer()
         cardManager.setUp(reloadCollectionViewCells)
         
         collectionView.delegate = self
@@ -33,13 +40,10 @@ class GameScreenViewController: UIViewController {
     }
     
     func reloadCollectionViewCells() {
-        UIView.transition(with: activityIndicatorView, duration: 5, options: .transitionCrossDissolve, animations: {
-            self.activityIndicatorView.isHidden = true
-        }, completion: nil)
-        
         collectionView.reloadData()
+        activityIndicator.stopAnimating()
     }
-    
+
     // MARK: - Game Logic
     
     func checkForMatch(_ faceUpCardIndexB: IndexPath) {
@@ -73,7 +77,14 @@ class GameScreenViewController: UIViewController {
     
     func gameShouldEnd() {
         if cardManager.allCardsMatched() {
-            showAlert(title: "Mission Complete", message: "You found all matching pairs!", actionTitle: "Main Menu")
+            timerManager.invalidateTimer()
+            
+            let timeElasped = timerManager.getTimeElapsed()
+            let action = UIAlertAction(title: "Main Menu", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            showAlert(title: "Mission Complete", message: "Found all matching pairs in \(timeElasped)s!", actions: [action])
         } else {
             return
         }
@@ -85,15 +96,22 @@ class GameScreenViewController: UIViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        showAlert(title: "Return to Main Menu?", message: "You will lose your progress", actionTitle: "Main Menu")
-    }
-    
-    func showAlert(title: String, message: String, actionTitle: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: actionTitle, style: .default) { (action) in
+        timerManager.invalidateTimer()
+        let yesAction = UIAlertAction(title: "Main Menu", style: .default) { (action) in
             self.dismiss(animated: true, completion: nil)
         }
-        alert.addAction(alertAction)
+        let noAction = UIAlertAction(title: "Continue Mission", style: .default) { (action) in
+            self.timerManager.startTimer()
+        }
+        showAlert(title: "Return to Main Menu?", message: "Your mission progress will be erased", actions: [yesAction, noAction])
+    }
+    
+    func showAlert(title: String, message: String, actions: [UIAlertAction]) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        for action in actions {
+            alert.addAction(action)
+        }
         present(alert, animated: true, completion: nil)
     }
 }
@@ -153,5 +171,11 @@ extension GameScreenViewController: CardManagerDelegate {
     }
 }
 
+// MARK: - TimerManagerDelegate
 
+extension GameScreenViewController: TimerManagerDelegate {
+    func updateTimeElapsed(_ timeElapsed: String) {
+        timerLabel.text = "Time: \(timeElapsed)"
+    }
+}
 

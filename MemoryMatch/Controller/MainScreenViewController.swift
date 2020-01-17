@@ -23,7 +23,7 @@ class MainScreenViewController: UIViewController {
         playButton.layer.cornerRadius = 4
         
         if let superview = playButton.superview {
-            let width = superview.frame.size.width * 0.6
+            let width = superview.frame.size.width * 0.66
             playButton.widthAnchor.constraint(equalToConstant: width).isActive = true
         }
     }
