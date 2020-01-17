@@ -14,24 +14,24 @@ protocol TimerManagerDelegate {
 
 class TimerManager {
     private var timer = Timer()
-    private var secondsElapsed: Float = 0.00
+    private var secondsElapsed: Float = 0.0
     
     var delegate: TimerManagerDelegate? 
-    
+
     func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimeElapsed), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTimeElapsed), userInfo: nil, repeats: true)
     }
     
-    @objc func updateTimeElapsed() {
-        secondsElapsed += 0.01
-        delegate?.updateTimeElapsed(getTimeElapsed())
-    }
-    
-    func invalidateTimer() {
+    func stopTimer() {
         timer.invalidate()
     }
     
     func getTimeElapsed() -> String{
-        return String(format: "%.2f", secondsElapsed)
+        return String(format: "%.1f", secondsElapsed)
+    }
+
+    @objc func updateTimeElapsed() {
+        secondsElapsed += 0.1
+        delegate?.updateTimeElapsed(getTimeElapsed())
     }
 }

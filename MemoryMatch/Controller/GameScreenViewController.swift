@@ -29,7 +29,6 @@ class GameScreenViewController: UIViewController {
         activityIndicator.startAnimating()
         
         timerManager.delegate = self
-        timerManager.startTimer()
         cardManager.setUp(reloadCollectionViewCells)
         
         collectionView.delegate = self
@@ -42,6 +41,7 @@ class GameScreenViewController: UIViewController {
     func reloadCollectionViewCells() {
         collectionView.reloadData()
         activityIndicator.stopAnimating()
+        timerManager.startTimer()
     }
 
     // MARK: - Game Logic
@@ -77,7 +77,7 @@ class GameScreenViewController: UIViewController {
     
     func gameShouldEnd() {
         if cardManager.allCardsMatched() {
-            timerManager.invalidateTimer()
+            timerManager.stopTimer()
             
             let timeElasped = timerManager.getTimeElapsed()
             let action = UIAlertAction(title: "Main Menu", style: .default) { (action) in
@@ -96,7 +96,7 @@ class GameScreenViewController: UIViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        timerManager.invalidateTimer()
+        timerManager.stopTimer()
         let yesAction = UIAlertAction(title: "Main Menu", style: .default) { (action) in
             self.dismiss(animated: true, completion: nil)
         }
@@ -175,7 +175,7 @@ extension GameScreenViewController: CardManagerDelegate {
 
 extension GameScreenViewController: TimerManagerDelegate {
     func updateTimeElapsed(_ timeElapsed: String) {
-        timerLabel.text = "Time: \(timeElapsed)"
+        timerLabel.text = "Time: \(timeElapsed)s"
     }
 }
 
