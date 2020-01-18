@@ -97,7 +97,7 @@ class GameScreenViewController: UIViewController {
     
     // MARK: - UI Updates
     func updateScoreLabel() {
-        scoreLabel.text = "\(pairsFound) out of 10"
+        scoreLabel.text = "\(pairsFound)/10"
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -180,7 +180,7 @@ extension GameScreenViewController: CardManagerDelegate {
 
 extension GameScreenViewController: TimerManagerDelegate {
     func updateTimeElapsed(_ timeElapsed: String) {
-        timerLabel.text = "\(timeElapsed)s"
+        timerLabel.text = "\(timeElapsed)"
     }
 }
 
