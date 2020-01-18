@@ -9,8 +9,8 @@
 import UIKit
 
 class Card {
-    private var image: UIImage
-    private var imageURL: URL
+    private let image: UIImage
+    private let imageURL: URL
     private var isFaceUp = false
     private var isMatched = false
     

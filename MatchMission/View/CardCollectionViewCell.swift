@@ -12,23 +12,24 @@ class CardCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var frontImageView: UIImageView!
     @IBOutlet weak var backImageView: UIImageView!
     
-    var card: Card?
+    let borderColor = UIColor.white.cgColor
+    let borderWidth: CGFloat = 4
+    let cornerRadius: CGFloat = 4
     
-    func setCard(_ card: Card) {
-        self.card = card
-        frontImageView.image = card.getImage()
+    func setFrontImageView(_ image: UIImage) {
+        frontImageView.image = image
     }
     
     func setAppearance() {
         self.backgroundColor = UIColor.clear
         
-        frontImageView.layer.borderColor = UIColor.white.cgColor
-        frontImageView.layer.borderWidth = 4
-        frontImageView.layer.cornerRadius = 4
+        frontImageView.layer.borderColor = borderColor
+        frontImageView.layer.borderWidth = borderWidth
+        frontImageView.layer.cornerRadius = cornerRadius
         
-        backImageView.layer.borderColor = UIColor.white.cgColor
-        backImageView.layer.borderWidth = 4
-        backImageView.layer.cornerRadius = 4
+        backImageView.layer.borderColor = borderColor
+        backImageView.layer.borderWidth = borderWidth
+        backImageView.layer.cornerRadius = cornerRadius
     }
     
     func flipUp() {

@@ -1,5 +1,5 @@
 //
-//  ItemData.swift
+//  ProductResponse.swift
 //  MemoryMatch
 //
 //  Created by Janice Lee on 2020-01-10.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ProductData: Codable {
+struct ProductResponse: Codable {
     let products : [Product]
 }
 

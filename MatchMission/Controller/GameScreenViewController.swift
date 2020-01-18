@@ -12,16 +12,13 @@ class GameScreenViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var footerView: UIView!
-    @IBOutlet weak var gameBoardView: UIView!
-    @IBOutlet weak var headerView: UIStackView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     
     let cardManager = CardManager()
     let timerManager = TimerManager()
     
-    var faceUpCardIndexA: IndexPath?
+    var lastFaceUpIndexPath: IndexPath?
     var numCardsPerRow = 4
     var pairsFound = 0
     
@@ -39,8 +36,8 @@ class GameScreenViewController: UIViewController {
     func gameSetup() {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
-        cardManager.setup(gameStart)
         updateScoreLabel()
+        cardManager.setup(gameStart)
     }
     
     func gameStart() {
@@ -51,14 +48,14 @@ class GameScreenViewController: UIViewController {
 
     // MARK: - Game Logic
     
-    func checkForMatch(_ faceUpCardIndexB: IndexPath) {
-        let cellA = collectionView.cellForItem(at: faceUpCardIndexA!) as! CardCollectionViewCell
-        let cellB = collectionView.cellForItem(at: faceUpCardIndexB) as! CardCollectionViewCell
+    func checkForMatch(_ currentIndexPath: IndexPath) -> Bool {
+        let cellA = collectionView.cellForItem(at: lastFaceUpIndexPath!) as! CardCollectionViewCell
+        let cellB = collectionView.cellForItem(at: currentIndexPath) as! CardCollectionViewCell
         
-        let cards = cardManager.getCards()
+        let cardA = cardManager.getCard(lastFaceUpIndexPath!.row)
+        let cardB = cardManager.getCard(currentIndexPath.row)
         
-        let cardA = cards[faceUpCardIndexA!.row]
-        let cardB = cards[faceUpCardIndexB.row]
+        var isMatch = false
         
         if cardA.getImageURL() == cardB.getImageURL() {
             cardA.setIsMatched(to: true)
@@ -69,46 +66,32 @@ class GameScreenViewController: UIViewController {
             
             cellA.Hide()
             cellB.Hide()
-            gameShouldEnd()
+            isMatch = true
         } else {
             cardA.setIsFaceUp(to: false)
             cardB.setIsFaceUp(to: false)
             
             cellA.flipDown()
             cellB.flipDown()
+            isMatch = false
         }
-        faceUpCardIndexA = nil
+        lastFaceUpIndexPath = nil
+        return isMatch
     }
     
-    func gameShouldEnd() {
-        if cardManager.allCardsMatched() {
-            timerManager.stopTimer()
-            
-            let timeElasped = timerManager.getTimeElapsed()
-            let action = UIAlertAction(title: "Main Menu", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
-            }
-            
-            showAlert(title: "Mission Complete", message: "Found all matching pairs in \(timeElasped)s!", actions: [action])
-        } else {
-            return
+    func endGame() {
+        timerManager.stopTimer()
+        
+        let timeElasped = timerManager.getTimeElapsed()
+        let action = UIAlertAction(title: "Main Menu", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
         }
+        showAlert(title: "Mission Complete", message: "Found all matching pairs in \(timeElasped)s!", actions: [action])
     }
     
     // MARK: - UI Updates
     func updateScoreLabel() {
         scoreLabel.text = "\(pairsFound)/10"
-    }
-    
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        timerManager.stopTimer()
-        let yesAction = UIAlertAction(title: "Main Menu", style: .default) { (action) in
-            self.dismiss(animated: true, completion: nil)
-        }
-        let noAction = UIAlertAction(title: "Continue Mission", style: .default) { (action) in
-            self.timerManager.startTimer()
-        }
-        showAlert(title: "Return to Main Menu?", message: "Your mission progress will be erased", actions: [yesAction, noAction])
     }
     
     func showAlert(title: String, message: String, actions: [UIAlertAction]) {
@@ -118,6 +101,18 @@ class GameScreenViewController: UIViewController {
             alert.addAction(action)
         }
         present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Event Handlers
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        timerManager.stopTimer()
+        let yesAction = UIAlertAction(title: "Main Menu", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        let noAction = UIAlertAction(title: "Continue Mission", style: .default) { (action) in
+            self.timerManager.startTimer()
+        }
+        showAlert(title: "Return to Main Menu?", message: "Your mission progress will be erased", actions: [yesAction, noAction])
     }
 }
 
@@ -131,7 +126,7 @@ extension GameScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
         let card = cardManager.getCards()[indexPath.row]
-        cell.setCard(card)
+        cell.setFrontImageView(card.getImage())
         cell.setAppearance()
         return cell
     }
@@ -142,19 +137,23 @@ extension GameScreenViewController: UICollectionViewDataSource {
 extension GameScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell
+        let card = cardManager.getCard(indexPath.row)
         
-        if let card = cell.card {
-            if !card.getIsFaceUp() && !card.getIsMatched() {
-                card.setIsFaceUp(to: true)
-                cell.flipUp()
-                
-                if faceUpCardIndexA == nil {
-                    faceUpCardIndexA = indexPath
-                } else {
-                    checkForMatch(indexPath)
+        if !card.getIsFaceUp() && !card.getIsMatched() {
+            card.setIsFaceUp(to: true)
+            cell.flipUp()
+            
+            if lastFaceUpIndexPath == nil {
+                lastFaceUpIndexPath = indexPath
+            } else {
+                let isMatch = checkForMatch(indexPath)
+            
+                if isMatch && cardManager.allCardsMatched() {
+                    endGame()
                 }
             }
         }
+        
     }
 }
 
@@ -172,7 +171,10 @@ extension GameScreenViewController: UICollectionViewDelegateFlowLayout {
 
 extension GameScreenViewController: CardManagerDelegate {
     func didFailWithError(_ error: Error) {
-        //
+        let action = UIAlertAction(title: "Main Menu", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        showAlert(title: "BEEP BOOP", message: "Robots cannot make it to mission control", actions: [action])
     }
 }
 

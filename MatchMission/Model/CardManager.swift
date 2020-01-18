@@ -20,6 +20,10 @@ class CardManager {
     var delegate: CardManagerDelegate?
     var numPairs = 10
     
+    func getCard(_ index: Int) -> Card {
+        return cards[index]
+    }
+    
     func getCards() -> [Card] {
         return cards
     }
@@ -57,7 +61,7 @@ class CardManager {
         var imageURLs = [URL]()
 
         do {
-            let decodedData = try decoder.decode(ProductData.self, from: data)
+            let decodedData = try decoder.decode(ProductResponse.self, from: data)
             let products = decodedData.products
             
             for product in products {
