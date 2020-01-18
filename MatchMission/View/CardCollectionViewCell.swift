@@ -42,7 +42,7 @@ class CardCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func Hide() {
+    func hide() {
         backImageView.alpha = 0
         
         UIView.animate(withDuration: 0.2, delay: 0.4, options: .curveEaseOut, animations: {

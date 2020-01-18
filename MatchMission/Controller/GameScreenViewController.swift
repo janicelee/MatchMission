@@ -1,5 +1,5 @@
 //
-//  GameGridViewController.swift
+//  GameScreenViewController.swift
 //  MemoryMatch
 //
 //  Created by Janice Lee on 2020-01-10.
@@ -25,7 +25,7 @@ class GameScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        gameSetup()
+        setupGame()
         
         timerManager.delegate = self
         collectionView.delegate = self
@@ -33,50 +33,44 @@ class GameScreenViewController: UIViewController {
         cardManager.delegate = self
     }
     
-    func gameSetup() {
+    // MARK: - Game Logic
+    
+    func setupGame() {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         updateScoreLabel()
-        cardManager.setup(gameStart)
+        cardManager.setup(startGame)
     }
     
-    func gameStart() {
+    func startGame() {
         collectionView.reloadData()
         activityIndicator.stopAnimating()
         timerManager.startTimer()
     }
-
-    // MARK: - Game Logic
     
-    func checkForMatch(_ currentIndexPath: IndexPath) -> Bool {
+    func checkForMatch(_ currentIndexPath: IndexPath) {
         let cellA = collectionView.cellForItem(at: lastFaceUpIndexPath!) as! CardCollectionViewCell
         let cellB = collectionView.cellForItem(at: currentIndexPath) as! CardCollectionViewCell
-        
+       
         let cardA = cardManager.getCard(lastFaceUpIndexPath!.row)
         let cardB = cardManager.getCard(currentIndexPath.row)
         
-        var isMatch = false
+        let isMatch = cardManager.checkForMatch(cardA, cardB)
         
-        if cardA.getImageURL() == cardB.getImageURL() {
-            cardA.setIsMatched(to: true)
-            cardB.setIsMatched(to: true)
-            
+        if isMatch {
             pairsFound += 1
             updateScoreLabel()
+            cellA.hide()
+            cellB.hide()
             
-            cellA.Hide()
-            cellB.Hide()
-            isMatch = true
+            if cardManager.allCardsMatched() {
+                endGame()
+            }
         } else {
-            cardA.setIsFaceUp(to: false)
-            cardB.setIsFaceUp(to: false)
-            
             cellA.flipDown()
             cellB.flipDown()
-            isMatch = false
         }
         lastFaceUpIndexPath = nil
-        return isMatch
     }
     
     func endGame() {
@@ -88,7 +82,7 @@ class GameScreenViewController: UIViewController {
         }
         showAlert(title: "Mission Complete", message: "Found all matching pairs in \(timeElasped)s!", actions: [action])
     }
-    
+
     // MARK: - UI Updates
     func updateScoreLabel() {
         scoreLabel.text = "\(pairsFound)/10"
@@ -146,14 +140,9 @@ extension GameScreenViewController: UICollectionViewDelegate {
             if lastFaceUpIndexPath == nil {
                 lastFaceUpIndexPath = indexPath
             } else {
-                let isMatch = checkForMatch(indexPath)
-            
-                if isMatch && cardManager.allCardsMatched() {
-                    endGame()
-                }
+                checkForMatch(indexPath)
             }
         }
-        
     }
 }
 

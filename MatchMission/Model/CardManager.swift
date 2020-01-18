@@ -28,6 +28,21 @@ class CardManager {
         return cards
     }
     
+    func checkForMatch(_ cardA: Card, _ cardB: Card) -> Bool {
+        var isMatch = false
+        
+        if cardA.getImageURL() == cardB.getImageURL() {
+            cardA.setIsMatched(to: true)
+            cardB.setIsMatched(to: true)
+            isMatch = true
+        } else {
+            cardA.setIsFaceUp(to: false)
+            cardB.setIsFaceUp(to: false)
+            isMatch = false
+        }
+        return isMatch
+    }
+    
     func allCardsMatched() -> Bool {
         for card in cards {
             if !card.getIsMatched() {
