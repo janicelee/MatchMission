@@ -111,8 +111,12 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIV-gT-ojs">
                                                 <rect key="frame" x="0.0" y="0.0" width="138" height="70"/>
                                                 <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="70j-0y-WLv">
+                                                        <rect key="frame" x="15" y="25.5" width="20" height="19"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngY-Jh-9ig">
-                                                        <rect key="frame" x="15" y="22" width="123" height="26"/>
+                                                        <rect key="frame" x="37" y="22" width="101" height="26"/>
                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -120,8 +124,10 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="ngY-Jh-9ig" firstAttribute="centerY" secondItem="ZIV-gT-ojs" secondAttribute="centerY" id="4fF-XR-OaP"/>
-                                                    <constraint firstItem="ngY-Jh-9ig" firstAttribute="leading" secondItem="ZIV-gT-ojs" secondAttribute="leading" constant="15" id="6lu-Nl-QY6"/>
                                                     <constraint firstAttribute="trailing" secondItem="ngY-Jh-9ig" secondAttribute="trailing" id="fBo-jn-0zJ"/>
+                                                    <constraint firstItem="70j-0y-WLv" firstAttribute="leading" secondItem="ZIV-gT-ojs" secondAttribute="leading" constant="15" id="kSd-O1-QXo"/>
+                                                    <constraint firstItem="70j-0y-WLv" firstAttribute="centerY" secondItem="ZIV-gT-ojs" secondAttribute="centerY" id="kvS-jJ-gYY"/>
+                                                    <constraint firstItem="ngY-Jh-9ig" firstAttribute="leading" secondItem="70j-0y-WLv" secondAttribute="trailing" constant="2" id="qnw-Pu-9Ca"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a1V-Da-z0e">
@@ -251,6 +257,7 @@
     <resources>
         <image name="background" width="2992" height="1875"/>
         <image name="backimage" width="2992" height="1845"/>
+        <image name="clock" catalog="system" width="64" height="60"/>
         <image name="xmark" catalog="system" width="64" height="56"/>
     </resources>
 </document>
