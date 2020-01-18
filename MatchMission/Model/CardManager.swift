@@ -33,7 +33,7 @@ class CardManager {
         return true
     }
     
-    func setUp(_ onComplete: @escaping () -> ()) {
+    func setup(_ onComplete: @escaping () -> ()) {
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             

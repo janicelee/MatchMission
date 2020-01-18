@@ -12,6 +12,9 @@ class GameScreenViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var gameBoardView: UIView!
+    @IBOutlet weak var headerView: UIStackView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     
@@ -24,21 +27,23 @@ class GameScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
+    
+        gameSetup()
         
         timerManager.delegate = self
-        cardManager.setUp(reloadCollectionViewCells)
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         cardManager.delegate = self
-        
+    }
+    
+    func gameSetup() {
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        cardManager.setup(gameStart)
         updateScoreLabel()
     }
     
-    func reloadCollectionViewCells() {
+    func gameStart() {
         collectionView.reloadData()
         activityIndicator.stopAnimating()
         timerManager.startTimer()
@@ -158,8 +163,8 @@ extension GameScreenViewController: UICollectionViewDelegate {
 extension GameScreenViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let emptySpacePerRow = CGFloat((numCardsPerRow - 1) * 10)
-        let cellSize = ((collectionView.frame.size.width - emptySpacePerRow) / CGFloat(numCardsPerRow)).rounded(.down)
-        return CGSize(width: cellSize, height: cellSize)
+        let x = ((collectionView.frame.size.width - emptySpacePerRow) / CGFloat(numCardsPerRow)).rounded(.down)
+        return CGSize(width: x, height: x)
     }
 }
 
@@ -175,7 +180,7 @@ extension GameScreenViewController: CardManagerDelegate {
 
 extension GameScreenViewController: TimerManagerDelegate {
     func updateTimeElapsed(_ timeElapsed: String) {
-        timerLabel.text = "Time: \(timeElapsed)s"
+        timerLabel.text = "\(timeElapsed)s"
     }
 }
 
