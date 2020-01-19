@@ -55,7 +55,7 @@ class GameScreenViewController: UIViewController {
         let cardA = cardManager.getCard(lastFaceUpIndexPath!.row)
         let cardB = cardManager.getCard(currentIndexPath.row)
         
-        let isMatch = cardManager.checkForMatch(cardA, cardB)
+        let isMatch = cardManager.checkIfMatch(cardA, cardB)
         
         if isMatch {
             pairsFound += 1

@@ -28,7 +28,7 @@ class CardManager {
         return cards
     }
     
-    func checkForMatch(_ cardA: Card, _ cardB: Card) -> Bool {
+    func checkIfMatch(_ cardA: Card, _ cardB: Card) -> Bool {
         var isMatch = false
         
         if cardA.getImageURL() == cardB.getImageURL() {
