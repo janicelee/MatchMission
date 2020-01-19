@@ -1,6 +1,6 @@
 //
 //  TimerManager.swift
-//  MemoryMatch
+//  MatchMission
 //
 //  Created by Janice Lee on 2020-01-16.
 //  Copyright © 2020 Janice Lee. All rights reserved.
