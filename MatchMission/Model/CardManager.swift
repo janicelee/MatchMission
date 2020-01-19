@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum SetupError: Error {
+    case notEnoughImageURLs(String)
+}
+
 protocol CardManagerDelegate {
     func didFailWithError(_ error: Error)
 }
@@ -28,7 +32,7 @@ class CardManager {
         return cards
     }
     
-    func checkIfMatch(_ cardA: Card, _ cardB: Card) -> Bool {
+    func checkIfCardsMatch(_ cardA: Card, _ cardB: Card) -> Bool {
         var isMatch = false
         
         if cardA.getImageURL() == cardB.getImageURL() {
@@ -52,6 +56,8 @@ class CardManager {
         return true
     }
     
+    // MARK: - Setup & Networking Methods
+    
     func setup(_ onComplete: @escaping () -> ()) {
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
@@ -64,7 +70,14 @@ class CardManager {
                 
                 if let data = data {
                     let imageURLs = self.getImageURLs(data)
-                    self.generateCards(with: imageURLs, onComplete)
+                    
+                    if (imageURLs.count < self.numPairs) {
+                        let error = SetupError.notEnoughImageURLs("Did not retrieve enough image URLs for the desired number of cards")
+                        self.delegate?.didFailWithError(error)
+                    } else {
+                        self.generateCards(with: imageURLs, onComplete)
+                    }
+                    
                 }
             }
             task.resume()
@@ -90,9 +103,7 @@ class CardManager {
         return imageURLs
     }
     
-    // TODO: throw error?
     private func generateCards(with imageURLs: [URL], _ onComplete: @escaping () -> ()) {
-        guard imageURLs.count >= numPairs else { return }
         let shuffledImageURLs = imageURLs.shuffled()
         let group = DispatchGroup()
         

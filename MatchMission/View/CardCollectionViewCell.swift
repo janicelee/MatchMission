@@ -45,8 +45,6 @@ class CardCollectionViewCell: UICollectionViewCell {
     }
     
     func hide() {
-        backImageView.alpha = 0
-        
         UIView.animate(withDuration: flipDuration, delay: delayDuration, options: .curveEaseOut, animations: {
             self.frontImageView.alpha = 0
             self.layer.borderWidth = 0

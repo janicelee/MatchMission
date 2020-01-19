@@ -55,7 +55,7 @@ class GameScreenViewController: UIViewController {
         let cardA = cardManager.getCard(lastFaceUpIndexPath!.row)
         let cardB = cardManager.getCard(currentIndexPath.row)
         
-        let isMatch = cardManager.checkIfMatch(cardA, cardB)
+        let isMatch = cardManager.checkIfCardsMatch(cardA, cardB)
         
         if isMatch {
             pairsFound += 1
@@ -160,10 +160,12 @@ extension GameScreenViewController: UICollectionViewDelegateFlowLayout {
 
 extension GameScreenViewController: CardManagerDelegate {
     func didFailWithError(_ error: Error) {
-        let action = UIAlertAction(title: "Main Menu", style: .default) { (action) in
-            self.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let action = UIAlertAction(title: "Main Menu", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            self.showAlert(title: "BEEP BOOP", message: "Robots cannot make it to mission control", actions: [action])
         }
-        showAlert(title: "BEEP BOOP", message: "Robots cannot make it to mission control", actions: [action])
     }
 }
 

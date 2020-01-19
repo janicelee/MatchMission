@@ -12,6 +12,10 @@ class MainScreenViewController: UIViewController {
 
     @IBOutlet weak var playButton: UIButton!
     
+    let borderWidth: CGFloat = 4
+    let cornerRadius: CGFloat = 4
+    let playButtonSizePercentage: CGFloat = 0.66
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setPlayButtonAppearance()
@@ -19,8 +23,8 @@ class MainScreenViewController: UIViewController {
     
     private func setPlayButtonAppearance() {
         playButton.layer.borderColor = UIColor.white.cgColor
-        playButton.layer.borderWidth = 4
-        playButton.layer.cornerRadius = 4
+        playButton.layer.borderWidth = borderWidth
+        playButton.layer.cornerRadius = cornerRadius
         
         if let superview = playButton.superview {
             let width = superview.frame.size.width * 0.66
