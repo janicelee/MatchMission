@@ -15,6 +15,8 @@ class CardCollectionViewCell: UICollectionViewCell {
     let borderColor = UIColor.white.cgColor
     let borderWidth: CGFloat = 4
     let cornerRadius: CGFloat = 4
+    let flipDuration = 0.2
+    let delayDuration = 0.5
     
     func setFrontImageView(_ image: UIImage) {
         frontImageView.image = image
@@ -33,19 +35,19 @@ class CardCollectionViewCell: UICollectionViewCell {
     }
     
     func flipUp() {
-        UIView.transition(from: backImageView, to: frontImageView, duration: 0.2, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
+        UIView.transition(from: backImageView, to: frontImageView, duration: flipDuration, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
     }
     
     func flipDown() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            UIView.transition(from: self.frontImageView, to: self.backImageView, duration: 0.2, options: [.transitionFlipFromRight, .showHideTransitionViews], completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayDuration) {
+            UIView.transition(from: self.frontImageView, to: self.backImageView, duration: self.flipDuration, options: [.transitionFlipFromRight, .showHideTransitionViews], completion: nil)
         }
     }
     
     func hide() {
         backImageView.alpha = 0
         
-        UIView.animate(withDuration: 0.2, delay: 0.4, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: flipDuration, delay: delayDuration, options: .curveEaseOut, animations: {
             self.frontImageView.alpha = 0
             self.layer.borderWidth = 0
             self.backgroundColor = UIColor.clear

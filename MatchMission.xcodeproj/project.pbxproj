@@ -11,7 +11,6 @@
 		F72FCC1323C94F4F00DB4F68 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72FCC1223C94F4F00DB4F68 /* Card.swift */; };
 		F72FCC1523C94F5900DB4F68 /* CardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72FCC1423C94F5900DB4F68 /* CardManager.swift */; };
 		F72FCC1723C9584C00DB4F68 /* ProductResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72FCC1623C9584C00DB4F68 /* ProductResponse.swift */; };
-		F76D1B4A23D412E7005808CD /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76D1B4923D412E7005808CD /* UIConstants.swift */; };
 		F7F4BD2723D143DC0005648A /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F4BD2623D143DC0005648A /* TimerManager.swift */; };
 		F7FB427123C847E4006714EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FB427023C847E4006714EB /* AppDelegate.swift */; };
 		F7FB427323C847E4006714EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FB427223C847E4006714EB /* SceneDelegate.swift */; };
@@ -27,7 +26,6 @@
 		F72FCC1223C94F4F00DB4F68 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F72FCC1423C94F5900DB4F68 /* CardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardManager.swift; sourceTree = "<group>"; };
 		F72FCC1623C9584C00DB4F68 /* ProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
-		F76D1B4923D412E7005808CD /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		F7F4BD2623D143DC0005648A /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		F7FB426D23C847E4006714EB /* Match Mission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Match Mission.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7FB427023C847E4006714EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 			children = (
 				F7FB427023C847E4006714EB /* AppDelegate.swift */,
 				F7FB427223C847E4006714EB /* SceneDelegate.swift */,
-				F76D1B4923D412E7005808CD /* UIConstants.swift */,
 				F72FCC1123C94EF700DB4F68 /* Model */,
 				F7FB428523C8485D006714EB /* View */,
 				F7FB428423C84858006714EB /* Controller */,
@@ -190,7 +187,6 @@
 				F72FCC1523C94F5900DB4F68 /* CardManager.swift in Sources */,
 				F7FB428723C84AD4006714EB /* GameScreenViewController.swift in Sources */,
 				F7F4BD2723D143DC0005648A /* TimerManager.swift in Sources */,
-				F76D1B4A23D412E7005808CD /* UIConstants.swift in Sources */,
 				F72FCC1023C93DAC00DB4F68 /* CardCollectionViewCell.swift in Sources */,
 				F7FB427323C847E4006714EB /* SceneDelegate.swift in Sources */,
 			);
