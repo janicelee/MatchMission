@@ -15,5 +15,5 @@
 - Play again and again; a random set of robots will be dispatched for you!
 
 
-Asset Images from:
+Asset images from:
 <a href="http://www.freepik.com">Freepik</a> 
