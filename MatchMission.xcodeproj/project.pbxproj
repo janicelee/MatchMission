@@ -17,6 +17,7 @@
 		F76D1B5823D54C16005808CD /* Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = F76D1B5323D54C16005808CD /* Cancel.png */; };
 		F76D1B5923D54C16005808CD /* SomeMatches.png in Resources */ = {isa = PBXBuildFile; fileRef = F76D1B5423D54C16005808CD /* SomeMatches.png */; };
 		F76D1B5A23D54C16005808CD /* Error.png in Resources */ = {isa = PBXBuildFile; fileRef = F76D1B5523D54C16005808CD /* Error.png */; };
+		F76D1B5C23D551BD005808CD /* set1.png in Resources */ = {isa = PBXBuildFile; fileRef = F76D1B5B23D551BD005808CD /* set1.png */; };
 		F7F4BD2723D143DC0005648A /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F4BD2623D143DC0005648A /* TimerManager.swift */; };
 		F7FB427123C847E4006714EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FB427023C847E4006714EB /* AppDelegate.swift */; };
 		F7FB427323C847E4006714EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FB427223C847E4006714EB /* SceneDelegate.swift */; };
@@ -39,6 +40,7 @@
 		F76D1B5323D54C16005808CD /* Cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cancel.png; sourceTree = "<group>"; };
 		F76D1B5423D54C16005808CD /* SomeMatches.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SomeMatches.png; sourceTree = "<group>"; };
 		F76D1B5523D54C16005808CD /* Error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Error.png; sourceTree = "<group>"; };
+		F76D1B5B23D551BD005808CD /* set1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set1.png; sourceTree = "<group>"; };
 		F7F4BD2623D143DC0005648A /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		F7FB426D23C847E4006714EB /* Match Mission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Match Mission.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7FB427023C847E4006714EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 		F76D1B4E23D5496E005808CD /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
+				F76D1B5B23D551BD005808CD /* set1.png */,
 				F76D1B4F23D54C0A005808CD /* Mainscreen.png */,
 				F76D1B5323D54C16005808CD /* Cancel.png */,
 				F76D1B5523D54C16005808CD /* Error.png */,
@@ -201,6 +204,7 @@
 				F76D1B5A23D54C16005808CD /* Error.png in Resources */,
 				F76D1B5923D54C16005808CD /* SomeMatches.png in Resources */,
 				F76D1B5623D54C16005808CD /* NoMatches.png in Resources */,
+				F76D1B5C23D551BD005808CD /* set1.png in Resources */,
 				F76D1B5023D54C0A005808CD /* Mainscreen.png in Resources */,
 				F7FB427823C847E4006714EB /* Main.storyboard in Resources */,
 				F76D1B5823D54C16005808CD /* Cancel.png in Resources */,
