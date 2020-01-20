@@ -5,13 +5,14 @@
 ![Mainscreen, No matches, Some matches](Screenshots/set1.png)
 ![Mainscreen, No matches, Some matches](Screenshots/set2.png)
 
-<h3> Your Mission: Find all Matching Pairs of Robots </h3>
+<h3> Your Mission: Find All Matching Pairs of Robots </h3>
 
-- You may turn over any two cards at a time
+- Turn over any two cards at a time
 - If they match, you've found a pair
-- Otherwise, they'll turn back over and you'll have to remember what you saw
-- The game ends when you've found all pairs
-- Each time you play, a random set of robots will be dispatched!
+- If they don't, they'll turn back over 
+- Remember which robots you saw and where
+- The game ends when you've found all matching pairs and you'll get to see how fast you completed your mission
+- Play again and again, a random set of robots will be dispatched for you!
 
 
 Images from:
