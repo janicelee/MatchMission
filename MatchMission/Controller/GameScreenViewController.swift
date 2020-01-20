@@ -24,13 +24,13 @@ class GameScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        setupGame()
         
-        timerManager.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
+        timerManager.delegate = self
         cardManager.delegate = self
+        
+        setupGame()
     }
     
     // MARK: - Game Logic
