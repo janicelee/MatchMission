@@ -26,6 +26,7 @@
 		F72FCC1223C94F4F00DB4F68 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F72FCC1423C94F5900DB4F68 /* CardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardManager.swift; sourceTree = "<group>"; };
 		F72FCC1623C9584C00DB4F68 /* ProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
+		F76D1B4D23D54858005808CD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F7F4BD2623D143DC0005648A /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		F7FB426D23C847E4006714EB /* Match Mission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Match Mission.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7FB427023C847E4006714EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 		F7FB426423C847E4006714EB = {
 			isa = PBXGroup;
 			children = (
+				F76D1B4D23D54858005808CD /* README.md */,
 				F7FB426F23C847E4006714EB /* MatchMission */,
 				F7FB426E23C847E4006714EB /* Products */,
 			);
