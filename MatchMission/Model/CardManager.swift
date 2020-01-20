@@ -8,12 +8,8 @@
 
 import UIKit
 
-enum SetupError: Error {
-    case notEnoughImageURLs(String)
-}
-
 protocol CardManagerDelegate {
-    func didFailWithError(_ error: Error)
+    func didFailWithError(_ error: Error, _ msg: String)
 }
 
 class CardManager {
@@ -32,7 +28,7 @@ class CardManager {
         return cards
     }
     
-    func checkIfCardsMatch(_ cardA: Card, _ cardB: Card) -> Bool {
+    func checkCardsMatch(_ cardA: Card, _ cardB: Card) -> Bool {
         var isMatch = false
         
         if cardA.getImageURL() == cardB.getImageURL() {
@@ -64,7 +60,7 @@ class CardManager {
             
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
-                    self.delegate?.didFailWithError(error!)
+                    self.delegate?.didFailWithError(error!, error!.localizedDescription)
                     return
                 }
                 
@@ -72,8 +68,7 @@ class CardManager {
                     let imageURLs = self.getImageURLs(data)
                     
                     if (imageURLs.count < self.numPairs) {
-                        let error = SetupError.notEnoughImageURLs("Did not retrieve enough image URLs for the desired number of cards")
-                        self.delegate?.didFailWithError(error)
+                        self.delegate?.didFailWithError(NSError(), "Did not retrieve enough image URLs for the desired number of cards")
                     } else {
                         self.generateCards(with: imageURLs, onComplete)
                     }
@@ -92,13 +87,24 @@ class CardManager {
             let decodedData = try decoder.decode(ProductResponse.self, from: data)
             let products = decodedData.products
             
+            var ids = Set<Int>()
+            var titles = Set<String>()
+            var srcs = Set<String>()
+            
             for product in products {
-                if let url = URL(string: product.image.src) {
+                let id = product.id
+                let title = product.title
+                let src = product.image.src
+                
+                if let url = URL(string: product.image.src), !ids.contains(id), !titles.contains(title), !srcs.contains(src) {
                     imageURLs.append(url)
+                    ids.insert(id)
+                    titles.insert(title)
+                    srcs.insert(src)
                 }
             }
         } catch {
-            self.delegate?.didFailWithError(error)
+            self.delegate?.didFailWithError(error, error.localizedDescription)
         }
         return imageURLs
     }
@@ -111,16 +117,14 @@ class CardManager {
             group.enter()
             URLSession.shared.dataTask(with: shuffledImageURLs[i]) { (data, response, error) in
                 if error != nil {
-                    self.delegate?.didFailWithError(error!)
+                    self.delegate?.didFailWithError(error!, error!.localizedDescription)
                 }
                 
-                if let data = data {
-                    if let resultImage = UIImage(data: data) {
-                        self.cards.append(Card(resultImage, shuffledImageURLs[i]))
-                        self.cards.append(Card(resultImage, shuffledImageURLs[i]))
-                        group.leave()
-                    }
+                if let data = data, let resultImage = UIImage(data: data) {
+                    self.cards.append(Card(resultImage, shuffledImageURLs[i]))
+                    self.cards.append(Card(resultImage, shuffledImageURLs[i]))
                 }
+                group.leave()
             }.resume()
         }
         
