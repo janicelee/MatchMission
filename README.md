@@ -12,7 +12,7 @@
 - If they don't, they'll turn back over 
 - Remember which robots you saw and where
 - The game ends when you've found all matching pairs and you'll get to see how fast you completed your mission
-- Play again and again, a random set of robots will be dispatched for you!
+- Play again and again; a random set of robots will be dispatched for you!
 
 
 Images from:
