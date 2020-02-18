@@ -1,6 +1,6 @@
 #  Match Mission
 
-<h3> A memory matching game with an intergalactic space-robots theme for iOS13+ </h3>
+<h3> A memory matching game with an intergalactic space-robots theme for iOS 13+ </h3>
 
 ![Mainscreen, No matches, Some matches](Screenshots/set1.png)
 ![Mainscreen, No matches, Some matches](Screenshots/set2.png)
