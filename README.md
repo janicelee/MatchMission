@@ -5,7 +5,7 @@
 ![Mainscreen, No matches, Some matches](Screenshots/set1.png)
 ![Mainscreen, No matches, Some matches](Screenshots/set2.png)
 
-<h3> Your Mission: Find All Matching Pairs of Robots </h3>
+<h3> Your Mission </h3>
 
 - Turn over any two cards at a time
 - If they match, you've found a pair! Otherwise, they'll turn back over
