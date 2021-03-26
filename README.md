@@ -10,7 +10,7 @@
 - Turn over any two cards at a time
 - If they match, you've found a pair! Otherwise, they'll turn back over
 - The game ends when you've found all matching pairs and you'll be shown how fast you completed your mission
-- When you play again, random set of robots will be dispatched for you!
+- Play again and again; a random set of robots will be dispatched for you!
 
 <h3> Stack </h3>
 
