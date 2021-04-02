@@ -15,7 +15,7 @@
 <h3> Stack </h3>
 
 - UIKit
-- AutoLayout
+- Auto Layout
 - Storyboard
 
 <h3> Credits </h3>
